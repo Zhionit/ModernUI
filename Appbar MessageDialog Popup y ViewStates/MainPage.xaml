@@ -1,0 +1,165 @@
+﻿<Page
+    x:Class="Appbar_MessageDialog_Popup_y_ViewStates.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Appbar_MessageDialog_Popup_y_ViewStates"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:Appbar_MessageDialog_Popup_y_ViewStates.ViewModels"
+    xmlns:cv="using:Appbar_MessageDialog_Popup_y_ViewStates.Converters"
+    mc:Ignorable="d">
+
+    <Page.DataContext>
+        <vm:DefaultViewModel/>
+    </Page.DataContext>
+
+    <Page.Resources>
+        <cv:Bool2VisibilityConverter x:Key="B2V"/>
+        <Style TargetType="Image">
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Height" Value="150"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Stretch" Value="UniformToFill"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="MaxHeight" Value="150"/>
+            <Setter Property="TextTrimming" Value="WordEllipsis"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Margin" Value="0,0,5,0"/>
+        </Style>
+        
+        <!--Se repite por que se necesita forzar el estilo en el DataTemplate DEl ListView-->
+        <Style x:Key="Img" TargetType="Image">
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Height" Value="150"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Stretch" Value="UniformToFill"/>
+        </Style>
+        <Style x:Key="Txt" TargetType="TextBlock">
+            <Setter Property="MaxHeight" Value="150"/>
+            <Setter Property="TextTrimming" Value="WordEllipsis"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Margin" Value="0,0,5,0"/>
+        </Style>
+        <Style x:Key="Brd" TargetType="Border">
+        <Setter Property="BorderBrush" Value="DarkGray"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        </Style>
+        <!--............................................................................-->
+        
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="35"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+        <Style x:Name="Stack_H" TargetType="StackPanel">
+            <Setter Property="Orientation" Value="Horizontal"/>
+        </Style>
+        <Style x:Name="Stack_V" TargetType="StackPanel">
+            <Setter Property="Orientation" Value="Vertical"/>
+            <Setter Property="Width" Value="500"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="Border">
+            <Setter Property="BorderBrush" Value="DarkGray"/>
+            <Setter Property="BorderThickness" Value="2"/>
+        </Style>
+    </Page.Resources>
+    
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        
+        <Grid.Resources>
+            <vm:CollectionViewModel x:Name="CollectionVm" x:Key="CollecionVM"/>
+        </Grid.Resources>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <ListView Grid.Column="2">
+            <Border DataContext="{Binding Persona1}">
+                <StackPanel Style="{StaticResource Stack_H}">
+                    <Image Source="{Binding ImgUri}"/>
+                    <StackPanel Style="{StaticResource Stack_V}">
+                        <TextBlock Text="{Binding Nombre}"/>
+                        <TextBlock Text="{Binding Descripcion}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+            <Border DataContext="{Binding Persona2}">
+                <StackPanel Style="{StaticResource Stack_H}">
+                    <Image Source="{Binding ImgUri}"/>
+                    <StackPanel Style="{StaticResource Stack_V}">
+                        <TextBlock Text="{Binding Nombre}"/>
+                        <TextBlock Text="{Binding Descripcion}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+            <Border DataContext="{Binding Persona3}">
+                <StackPanel Style="{StaticResource Stack_H}">
+                    <Image Source="{Binding ImgUri}"/>
+                    <StackPanel Style="{StaticResource Stack_V}">
+                        <TextBlock Text="{Binding Nombre}"/>
+                        <TextBlock Text="{Binding Descripcion}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+            <Border DataContext="{Binding Persona4}">
+                <StackPanel Style="{StaticResource Stack_H}">
+                    <Image Source="{Binding ImgUri}"/>
+                    <StackPanel Style="{StaticResource Stack_V}">
+                        <TextBlock Text="{Binding Nombre}"/>
+                        <TextBlock Text="{Binding Descripcion}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+            <Border DataContext="{Binding Persona5}">
+                <StackPanel Style="{StaticResource Stack_H}">
+                    <Image Source="{Binding ImgUri}"/>
+                    <StackPanel Style="{StaticResource Stack_V}">
+                        <TextBlock Text="{Binding Nombre}"/>
+                        <TextBlock Text="{Binding Descripcion}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </ListView>
+        
+        <ListView ItemsSource="{Binding Source={StaticResource CollecionVM},Path=PeopleList}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border Style="{StaticResource Brd}">
+                        <StackPanel Style="{StaticResource Stack_H}">
+                            <Image Style="{StaticResource Img}" Source="{Binding ImgUri}"/>
+                            <StackPanel Style="{StaticResource Stack_V}">
+                                <TextBlock Style="{StaticResource Txt}" Text="{Binding Nombre}"/>
+                                <TextBlock Style="{StaticResource Txt}" Text="{Binding Descripcion}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackPanel Grid.Column="1">
+            <TextBlock FontSize="35" Margin="35" Text="Ingresa tus datos: " VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel >
+                    <TextBlock Margin="5" FontSize="35" Text="Nombre: "/>
+                    <TextBlock Margin="5"  FontSize="35" Text="Descripcion: "/>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <TextBox x:Name="TxtNombre" FontSize="17" />
+                    <TextBox x:Name="TxtDescripcion" FontSize="17"/>
+                </StackPanel>
+            </Grid>
+            <StackPanel Style="{StaticResource Stack_H}">
+                <Button x:Name="Add" Content="Add" Click="Add_Click" HorizontalAlignment="Center"/>
+                <Button x:Name="Remove" Content="Remove" Click="Remove_Click" HorizontalAlignment="Right"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>
