@@ -1,0 +1,114 @@
+﻿<Page
+    
+    x:Class="Binding_avanzado.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Binding_avanzado"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:Binding_avanzado.ViewModels"
+    xmlns:cv="using:Binding_avanzado.Converters"
+    mc:Ignorable="d">
+
+    <Page.DataContext>
+        <vm:DefaultViewModel/>
+    </Page.DataContext>
+    
+    <Page.Resources>
+        <cv:Bool2VisibilityConverter x:Key="B2V"/>
+        <Style TargetType="Image">
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Height" Value="150"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Stretch" Value="UniformToFill"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="MaxHeight" Value="150"/>
+            <Setter Property="TextTrimming" Value="WordEllipsis"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Margin" Value="0,0,5,0"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="35"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+        <Style x:Name="Stack_H" TargetType="StackPanel">
+            <Setter Property="Orientation" Value="Horizontal"/>
+        </Style>
+        <Style x:Name="Stack_V" TargetType="StackPanel">
+            <Setter Property="Orientation" Value="Vertical"/>
+            <Setter Property="Width" Value="500"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="Border">
+            <Setter Property="BorderBrush" Value="DarkGray"/>
+            <Setter Property="BorderThickness" Value="2"/>
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <ListView>
+            <Border DataContext="{Binding Persona1}">
+                <StackPanel Style="{StaticResource Stack_H}">
+                    <Image Source="{Binding ImgUri}"/>
+                    <StackPanel Style="{StaticResource Stack_V}">
+                        <TextBlock Text="{Binding Nombre}"/>
+                        <TextBlock Text="{Binding Descripcion}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+            <Border DataContext="{Binding Persona2}">
+                <StackPanel Style="{StaticResource Stack_H}">
+                    <Image Source="{Binding ImgUri}"/>
+                    <StackPanel Style="{StaticResource Stack_V}">
+                        <TextBlock Text="{Binding Nombre}"/>
+                        <TextBlock Text="{Binding Descripcion}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+            <Border DataContext="{Binding Persona3}">
+                <StackPanel Style="{StaticResource Stack_H}">
+                    <Image Source="{Binding ImgUri}"/>
+                    <StackPanel Style="{StaticResource Stack_V}">
+                        <TextBlock Text="{Binding Nombre}"/>
+                        <TextBlock Text="{Binding Descripcion}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+            <Border DataContext="{Binding Persona4}">
+                <StackPanel Style="{StaticResource Stack_H}">
+                    <Image Source="{Binding ImgUri}"/>
+                    <StackPanel Style="{StaticResource Stack_V}">
+                        <TextBlock Text="{Binding Nombre}"/>
+                        <TextBlock Text="{Binding Descripcion}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+            <Border DataContext="{Binding Persona5}">
+                <StackPanel Style="{StaticResource Stack_H}">
+                    <Image Source="{Binding ImgUri}"/>
+                    <StackPanel Style="{StaticResource Stack_V}">
+                        <TextBlock Text="{Binding Nombre}"/>
+                        <TextBlock Text="{Binding Descripcion}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </ListView>
+        
+        <StackPanel Grid.Column="1">
+            <TextBox Text="{Binding DummyString, Mode=OneTime}"/>
+            <TextBox Text="{Binding DummyString, Mode=OneWay}"/>
+            <TextBox Text="{Binding DummyString, Mode=TwoWay}"/>
+            
+            <Button Content="Espichame! YA!!!" FontSize="50" Click="Button_Click"/>
+            <Rectangle Fill="blue" Width="200" Height="200" Visibility="{Binding ElementName=RecActivator, Path=IsOn, Converter={StaticResource B2V}}"/>
+            <ToggleSwitch x:Name="RecActivator" Header="Rectangulo" OffContent="Invisible" OnContent="Visible" IsOn="True"/>
+        </StackPanel>
+        
+    </Grid>
+</Page>
