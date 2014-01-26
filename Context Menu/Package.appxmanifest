@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
+  <Identity Name="e50b03d4-48df-4e3d-b804-224942a7e346" Publisher="CN=Zhionit" Version="1.0.0.0" />
+  <Properties>
+    <DisplayName>Context Menu</DisplayName>
+    <PublisherDisplayName>Zhionit</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+  </Properties>
+  <Prerequisites>
+    <OSMinVersion>6.3.0</OSMinVersion>
+    <OSMaxVersionTested>6.3.0</OSMaxVersionTested>
+  </Prerequisites>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="Context_Menu.App">
+      <m2:VisualElements DisplayName="Context Menu" Square150x150Logo="Assets\Logo.png" Square30x30Logo="Assets\SmallLogo.png" Description="Context Menu" ForegroundText="light" BackgroundColor="#464646">
+        <!--Acá se define la pantalla de presentación de la aplicación -->
+        <m2:SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#2F0D97" />
+      </m2:VisualElements>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="internetClient" />
+  </Capabilities>
+</Package>
